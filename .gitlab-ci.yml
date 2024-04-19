@@ -1,0 +1,16 @@
+image: ruby:latest
+cache:
+  paths:
+    - vendor/ruby
+
+before_script:
+  - ruby -v  # Print out ruby version for debugging
+  # Uncomment next line if your rails app needs a JS runtime:
+  - apt-get update -q && apt-get install build-essential -yqq
+  - bundle config set --local deployment true  # Install dependencies into ./vendor/ruby
+  - bundle install -j $(nproc)
+
+puppetfilecheck:
+  script:
+    - scripts/codecheck.rb Puppetfile
+
