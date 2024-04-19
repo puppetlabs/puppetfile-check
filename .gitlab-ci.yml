@@ -1,16 +1,26 @@
-image: ruby:latest
-cache:
-  paths:
-    - vendor/ruby
+---
+stages:
+  - puppetfilecheck
 
-before_script:
-  - ruby -v  # Print out ruby version for debugging
-  # Uncomment next line if your rails app needs a JS runtime:
-  - apt-get update -q && apt-get install build-essential -yqq
-  - bundle config set --local deployment true  # Install dependencies into ./vendor/ruby
-  - bundle install -j $(nproc)
+default:
+  image: ruby:latest
+  cache:
+    paths:
+      - vendor/ruby
+
+  before_script:
+    - ruby -v  # Print out ruby version for debugging
+    - bundle -v
+    - gem --version
+    - rm Gemfile.lock || true
+    - bundle config set --local deployment true  # Install dependencies into ./vendor/ruby
+    - bundle config set --path vendor/ruby
+    - bundle install -j $(nproc)
 
 puppetfilecheck:
   script:
     - scripts/codecheck.rb Puppetfile
-
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - Puppetfile
