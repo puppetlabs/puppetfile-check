@@ -1,26 +1,23 @@
 ---
 stages:
-  - puppetfilecheck
+  - check
+  - badtest
 
 default:
   image: ruby:latest
-  cache:
-    paths:
-      - vendor/ruby
 
-  before_script:
-    - ruby -v  # Print out ruby version for debugging
-    - bundle -v
-    - gem --version
-    - rm Gemfile.lock || true
-    - bundle config set --local deployment true  # Install dependencies into ./vendor/ruby
-    - bundle config set --path vendor/ruby
-    - bundle install -j $(nproc)
-
-puppetfilecheck:
+puppetfile:
+  stage: check
   script:
-    - scripts/codecheck.rb Puppetfile
+    - ruby scripts/codecheck.rb Puppetfile
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE =~ /(merge_request_event|push|web)/
       changes:
         - Puppetfile
+
+puppetfile/bad:
+  stage: badtest
+  script:
+    - ruby scripts/codecheck.rb tests/Puppetfile
+  rules:
+    - if: $CI_PIPELINE_SOURCE =~ /^web/
