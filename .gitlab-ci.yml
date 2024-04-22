@@ -10,6 +10,7 @@ puppetfile:
   stage: check
   script:
     - ruby scripts/codecheck.rb Puppetfile
+    - scripts/no_config_version.sh
   rules:
     - if: $CI_PIPELINE_SOURCE =~ /(merge_request_event|push|web)/
       changes:
