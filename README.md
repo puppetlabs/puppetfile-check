@@ -1,10 +1,12 @@
-# Example control repo with executable file check
+# Executable file checks for Puppet control repositories
 
-This repo is a skeleton control-repo including checks for executable code that may be run
-by the Puppet server. These files can be used in CI jobs to help ensure that executable code
-is not committed to your control repository. 
+This repository includes checks for executable code that may be run by the Puppet server. These files
+can be used in CI jobs to help ensure that executable code is not committed to your control repository.
+This repository itself is a simple control repo to facilitate testing and to show an example of how
+it might be used.
 
-## ⚠️ Please note that this does not prevent a malicious user from committing malicious Puppet code or malicious custom facts.
+⚠️ Please note that this only checks for specific cases of executable code and does not prevent a 
+malicious user from committing obfuscated malicious Puppet code or malicious custom facts.
 
 - `scripts/codecheck.rb` will check a file for Ruby code that's not expected in a `Puppetfile`.
 - `scripts/no_config_version.sh` will ensure that the environment does not specify a [`config_version`](https://www.puppet.com/docs/puppet/latest/config_file_environment.html) setting.
@@ -27,7 +29,7 @@ include executable code:
 
 ### Server-side Hook Configuration
 
-If your workflow grants developers the ability to create feature branches and contributing code directly,
+If your workflow grants developers the ability to create feature branches and contribute code directly,
 then you will need to configure server `pre-receive` hooks to reject commits with executable code. Create
 hooks for each of the files in the `scripts` directory.
 
@@ -97,7 +99,7 @@ Run a test push to verify execution:
 Example:
 ```
 PS C:\Users\paul\Documents\Code\test\test-pre> git push -v origin main
-Pushing to https://gitlab.paulreed.ca/puppet/test-pre.git
+Pushing to https://gitlab.example.com/puppet/test-pre.git
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
 Delta compression using up to 24 threads
@@ -113,7 +115,7 @@ remote:   }
 remote: ]
 To https://gitlab.example.com/puppet/test-pre.git
  ! [remote rejected] main -> main (pre-receive hook declined)
-error: failed to push some refs to 'https://gitlab.paulreed.ca/puppet/test-pre.git'
+error: failed to push some refs to 'https://gitlab.example.com/puppet/test-pre.git'
 PS C:\Users\paul\Documents\Code\test\test-pre>
 
 ```
