@@ -1,8 +1,9 @@
-# Example control repo with executable file check
+# Executable file checks for Puppet control repositories
 
-This repo is a skeleton control-repo including checks for executable code that may be run
-by the Puppet server. These files can be used in CI jobs to help ensure that executable code
-is not committed to your control repository. 
+This repository includes checks for executable code that may be run by the Puppet server. These files
+can be used in CI jobs to help ensure that executable code is not committed to your control repository.
+This repository itself is a simple control repo to facilitate testing and to show an example of how
+it might be used.
 
 ## ⚠️ Please note that this does not prevent a malicious user from committing malicious Puppet code or malicious custom facts.
 
