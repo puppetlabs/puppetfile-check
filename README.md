@@ -35,3 +35,19 @@ hooks for each of the files in the `scripts` directory.
 - GitHub:
   - GitHub supports server side hooks only on **GitHub Enterprise**.
   - Follow the [official GitHub instructions](https://docs.github.com/en/enterprise-server@3.12/admin/policies/enforcing-policy-with-pre-receive-hooks/managing-pre-receive-hooks-on-your-instance#creating-pre-receive-hooks) to configure them.
+
+### Webhook Configuration
+
+If you don't have the ability to configure CI jobs or server-side hooks, then you can stand up a webhook
+server using your platform of choice. The webhook server should clone the repository and then run each of
+the hook scripts in this repository or incorporate their functionality. Creating that webhook server is
+beyond the scope of this guide, but you can find some guidance for your Git platform.
+
+- GitLab
+  - https://docs.gitlab.com/ee/user/project/integrations/webhooks.html
+- GitHub
+  - https://docs.github.com/en/webhooks
+ 
+
+
+
