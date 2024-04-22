@@ -2,13 +2,16 @@
 require 'ripper'
 require 'json'
 
-unless ARGV[0]
- puts "Run this script with the name of a file, eg '#{$PROGRAM_NAME} /path/to/Puppetfile'."
+if ARGV[0]
+ path = ARGV[0]
+else
+ puts "No file path was provided, assuming './Puppetfile'."
+ puts "If you'd like to run this on a different file path, provide it as an argument like '#{$PROGRAM_NAME} /path/to/Puppetfile'."
  puts "If the file contains any Ruby methods, this will print them and then exit with an error code."
- exit 0
+ path = 'Puppetfile'
 end
 
-tokens = Ripper.sexp(File.read(ARGV[0]))
+tokens = Ripper.sexp(File.read(path))
 
 if tokens.nil?
   # no Ruby code
