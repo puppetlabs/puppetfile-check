@@ -6,8 +6,8 @@ is not committed to your control repository.
 
 ## ⚠️ Please note that this does not prevent a malicious user from committing malicious Puppet code or malicious custom facts.
 
-- The script `scripts/codecheck.rb` will check a file for Ruby code that's not expected in a `Puppetfile`.
-- The script `scripts/no_config_version.sh` will ensure that the environment does not specify a [`config_version`](https://www.puppet.com/docs/puppet/latest/config_file_environment.html) setting.
+- `scripts/codecheck.rb` will check a file for Ruby code that's not expected in a `Puppetfile`.
+- `scripts/no_config_version.sh` will ensure that the environment does not specify a [`config_version`](https://www.puppet.com/docs/puppet/latest/config_file_environment.html) setting.
 
 
 ## Usage:
