@@ -5,7 +5,8 @@ can be used in CI jobs to help ensure that executable code is not committed to y
 This repository itself is a simple control repo to facilitate testing and to show an example of how
 it might be used.
 
-## ⚠️ Please note that this does not prevent a malicious user from committing malicious Puppet code or malicious custom facts.
+⚠️ Please note that this only checks for specific cases of executable code and does not prevent a 
+malicious user from committing obfuscated malicious Puppet code or malicious custom facts.
 
 - `scripts/codecheck.rb` will check a file for Ruby code that's not expected in a `Puppetfile`.
 - `scripts/no_config_version.sh` will ensure that the environment does not specify a [`config_version`](https://www.puppet.com/docs/puppet/latest/config_file_environment.html) setting.
