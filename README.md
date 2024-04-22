@@ -29,7 +29,7 @@ include executable code:
 
 ### Server-side Hook Configuration
 
-If your workflow grants developers the ability to create feature branches and contributing code directly,
+If your workflow grants developers the ability to create feature branches and contribute code directly,
 then you will need to configure server `pre-receive` hooks to reject commits with executable code. Create
 hooks for each of the files in the `scripts` directory.
 
