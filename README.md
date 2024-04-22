@@ -12,6 +12,8 @@ is not committed to your control repository.
 
 ## Usage:
 
+Choose the option below that matches your own usage requirements.
+
 ### CI Configuration
 
 If your workflow consists of developers working in their own fork of your control repository and contributing
