@@ -25,7 +25,7 @@ jobs:
       - name: Code Check
         run: |
           ruby scripts/codecheck.rb Puppetfile
-          scripts/no_config_version.sh
+          sh scripts/no_config_version.sh
 
       - name: Fail Code Check Test
         continue-on-error: true
