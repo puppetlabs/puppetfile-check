@@ -23,7 +23,9 @@ jobs:
           ruby-version: '3.2'
 
       - name: Code Check
-        run: ruby scripts/codecheck.rb Puppetfile
+        run: |
+          ruby scripts/codecheck.rb Puppetfile
+          scripts/no_config_version.sh
 
       - name: Fail Code Check Test
         continue-on-error: true
